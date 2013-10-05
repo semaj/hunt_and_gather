@@ -4,7 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Location</th>
-    <th></th>
+    <th>Food?</th>
     <th></th>
     <th></th>
   </tr>
@@ -13,6 +13,7 @@
   <tr>
     <td><%= school.name %></td>
     <td><%= school.location %></td>
+    <td><%= school.has_food? %></td>
     <td><%= link_to 'Show', school %></td>
     <td><%= link_to 'Edit', edit_school_path(school) %></td>
     <td><%= link_to 'Destroy', school, confirm: 'Are you sure?', method: :delete %></td>

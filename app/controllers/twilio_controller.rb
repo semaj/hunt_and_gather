@@ -1,10 +1,11 @@
 class TwilioController < ApplicationController
 
   def process_sms
-    body = params[:Body]
+    body = params[:Body].downcase
     keywords = body.keywords
     hunting = %w(hungry hunger want where find hunting hunt)
-    gathering = %w(found there here look gathering gather)
+    gathering = %w(found there there's here look gathering gather gathered)
+    schools = School.all.map {|s| s.name.downcase }
     keywords.rank.each do |word|
       raw = word.text.downcase
       if hunting.any? {|s| s.eql? raw }
