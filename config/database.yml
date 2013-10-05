@@ -1,8 +1,6 @@
 development:
-  adapter: postgresql
-  database: carter-rails
-  username: crabasa
-  password:
+  adapter: sqlite3
+  database: db/development.sqlite3
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
