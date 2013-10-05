@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>ID:</b>
+  <%= @school.id %>
+</p>
+<p>
   <b>Name:</b>
   <%= @school.name %>
 </p>
@@ -9,6 +13,31 @@
   <b>Location:</b>
   <%= @school.location %>
 </p>
+
+<p>
+  <b>Food?:</b>
+  <%= @school.location %>
+</p>
+<table>
+  <% @school.buildings.each do |building|  %>
+    <tr>
+      <td><b><%= building.name %></b></td>
+      <td><%= link_to 'Show', building %></td>
+      <td><%= link_to 'Edit', edit_building_path(building) %></td>
+      <td><%= link_to 'Destroy', building, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+    <% building.rooms.each do |room|  %>
+      <tr>
+        <td><%= room.name %></td>
+        <td><%= link_to 'Show', room %></td>
+        <td><%= link_to 'Edit', edit_room_path(room) %></td>
+        <td><%= link_to 'Destroy', room, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+    </tr>
+  <%end%>
+</table>
+
 
 
 <%= link_to 'Edit', edit_school_path(@school) %> |

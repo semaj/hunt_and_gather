@@ -32,3 +32,95 @@ Migrating to CreateRooms (20131005215502)
   [1m[35m (0.0ms)[0m  PRAGMA index_list("buildings")
   [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("rooms")[0m
   [1m[35m (0.0ms)[0m  PRAGMA index_list("schools")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSchools (20131005215238)
+Migrating to CreateBuildings (20131005215445)
+Migrating to CreateRooms (20131005215502)
+Migrating to AddFoodBooleanToSchoolsBuildingsRooms (20131005233417)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "schools" ADD "food" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "buildings" ADD "food" boolean[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "rooms" ADD "food" boolean
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20131005233417')[0m
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("buildings")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("rooms")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schools")[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to AddFoodBooleanToSchoolsBuildingsRooms (20131005233417)
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TEMPORARY TABLE "altered_rooms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "building_id" integer, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "food" boolean) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("rooms")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "rooms"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_rooms" ("id","building_id","name","created_at","updated_at","food") VALUES (1, 1, '301', '2013-10-05 23:21:07.417075', '2013-10-05 23:21:07.417075', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_rooms" ("id","building_id","name","created_at","updated_at","food") VALUES (2, 1, '433', '2013-10-05 23:21:29.837601', '2013-10-05 23:21:29.837601', NULL)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_rooms" ("id","building_id","name","created_at","updated_at","food") VALUES (3, 1, '111', '2013-10-05 23:21:45.805453', '2013-10-05 23:21:45.805453', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_rooms" ("id","building_id","name","created_at","updated_at","food") VALUES (4, 2, '108', '2013-10-05 23:22:24.013106', '2013-10-05 23:22:24.013106', NULL)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_rooms" ("id","building_id","name","created_at","updated_at","food") VALUES (5, 2, '111', '2013-10-05 23:22:39.900897', '2013-10-05 23:22:39.900897', NULL)
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "rooms"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "rooms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "building_id" integer, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("altered_rooms")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_rooms"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "rooms" ("id","building_id","name","created_at","updated_at") VALUES (1, 1, '301', '2013-10-05 23:21:07.417075', '2013-10-05 23:21:07.417075')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "rooms" ("id","building_id","name","created_at","updated_at") VALUES (2, 1, '433', '2013-10-05 23:21:29.837601', '2013-10-05 23:21:29.837601')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "rooms" ("id","building_id","name","created_at","updated_at") VALUES (3, 1, '111', '2013-10-05 23:21:45.805453', '2013-10-05 23:21:45.805453')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "rooms" ("id","building_id","name","created_at","updated_at") VALUES (4, 2, '108', '2013-10-05 23:22:24.013106', '2013-10-05 23:22:24.013106')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "rooms" ("id","building_id","name","created_at","updated_at") VALUES (5, 2, '111', '2013-10-05 23:22:39.900897', '2013-10-05 23:22:39.900897')[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "altered_rooms"
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "altered_buildings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "school_id" integer, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "food" boolean) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("buildings")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "buildings"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_buildings" ("id","school_id","name","created_at","updated_at","food") VALUES (1, 1, 'Curry Student Center', '2013-10-05 23:18:45.800779', '2013-10-05 23:18:45.800779', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_buildings" ("id","school_id","name","created_at","updated_at","food") VALUES (2, 1, 'West Village H', '2013-10-05 23:19:07.000276', '2013-10-05 23:19:07.000276', NULL)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_buildings" ("id","school_id","name","created_at","updated_at","food") VALUES (3, 1, 'Centennial Quad', '2013-10-05 23:19:52.623266', '2013-10-05 23:19:52.623266', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_buildings" ("id","school_id","name","created_at","updated_at","food") VALUES (4, 1, 'Snell Library', '2013-10-05 23:19:54.230945', '2013-10-05 23:19:54.230945', NULL)[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "altered_buildings" ("id","school_id","name","created_at","updated_at","food") VALUES (5, 1, 'West Village G', '2013-10-05 23:20:30.305311', '2013-10-05 23:20:30.305311', NULL)
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "buildings"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "buildings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "school_id" integer, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("altered_buildings")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_buildings"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "buildings" ("id","school_id","name","created_at","updated_at") VALUES (1, 1, 'Curry Student Center', '2013-10-05 23:18:45.800779', '2013-10-05 23:18:45.800779')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "buildings" ("id","school_id","name","created_at","updated_at") VALUES (2, 1, 'West Village H', '2013-10-05 23:19:07.000276', '2013-10-05 23:19:07.000276')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "buildings" ("id","school_id","name","created_at","updated_at") VALUES (3, 1, 'Centennial Quad', '2013-10-05 23:19:52.623266', '2013-10-05 23:19:52.623266')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "buildings" ("id","school_id","name","created_at","updated_at") VALUES (4, 1, 'Snell Library', '2013-10-05 23:19:54.230945', '2013-10-05 23:19:54.230945')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "buildings" ("id","school_id","name","created_at","updated_at") VALUES (5, 1, 'West Village G', '2013-10-05 23:20:30.305311', '2013-10-05 23:20:30.305311')[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_buildings"
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_schools" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "location" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "food" boolean) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schools")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "schools"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_schools" ("id","name","location","created_at","updated_at","food") VALUES (1, 'Northeastern University', 'Boston, MA', '2013-10-05 23:17:58.374934', '2013-10-05 23:17:58.374934', NULL)
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "schools"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "schools" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "location" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("altered_schools")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_schools"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schools" ("id","name","location","created_at","updated_at") VALUES (1, 'Northeastern University', 'Boston, MA', '2013-10-05 23:17:58.374934', '2013-10-05 23:17:58.374934')[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_schools"
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20131005233417'[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("buildings")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("rooms")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schools")[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSchools (20131005215238)
+Migrating to CreateBuildings (20131005215445)
+Migrating to CreateRooms (20131005215502)
+Migrating to AddFoodBooleanToSchoolsBuildingsRooms (20131005233417)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "schools" ADD "food" boolean DEFAULT 'f'
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "buildings" ADD "food" boolean DEFAULT 'f'[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "rooms" ADD "food" boolean DEFAULT 'f'
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20131005233417')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("buildings")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("rooms")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schools")[0m

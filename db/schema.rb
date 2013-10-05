@@ -11,27 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131005215502) do
+ActiveRecord::Schema.define(:version => 20131005233417) do
 
   create_table "buildings", :force => true do |t|
     t.integer  "school_id"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "food",       :default => false
   end
 
   create_table "rooms", :force => true do |t|
     t.integer  "building_id"
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "food",        :default => false
   end
 
   create_table "schools", :force => true do |t|
     t.string   "name"
     t.string   "location"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "food",       :default => false
   end
 
 end
