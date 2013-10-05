@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-CarterRails::Application.load_tasks
+HuntAndGather::Application.load_tasks

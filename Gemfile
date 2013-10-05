@@ -39,3 +39,4 @@ end
 
 gem 'twilio-ruby'
 gem 'highscore'
+gem 'rename'

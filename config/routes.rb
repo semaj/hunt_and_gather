@@ -1,4 +1,4 @@
-CarterRails::Application.routes.draw do
+HuntAndGather::Application.routes.draw do
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
