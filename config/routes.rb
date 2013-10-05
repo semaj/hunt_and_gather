@@ -1,5 +1,7 @@
 HuntAndGather::Application.routes.draw do
 
+  root :to => 'welcome#index'
+
   resources :rooms
 
   resources :buildings

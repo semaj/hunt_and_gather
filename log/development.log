@@ -23,3 +23,12 @@ Migrating to CreateRooms (20131005215502)
   [1m[35m (0.0ms)[0m  PRAGMA index_list("buildings")
   [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("rooms")[0m
   [1m[35m (0.0ms)[0m  PRAGMA index_list("schools")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSchools (20131005215238)
+Migrating to CreateBuildings (20131005215445)
+Migrating to CreateRooms (20131005215502)
+  [1m[35m (0.4ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("buildings")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("rooms")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schools")
