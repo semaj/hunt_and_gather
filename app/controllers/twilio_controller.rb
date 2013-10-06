@@ -24,6 +24,7 @@ class TwilioController < ApplicationController
   end
 
   private
+
     def gathering_school(text)
       text.keywords.top(10).each do |word|
         School.all.each do |school|
@@ -32,9 +33,9 @@ class TwilioController < ApplicationController
             gathering_building(school, keywords)
             lets_break = true
           end
-          break if lets_break
+          break if lets_break end
         end
-        break if lets_break
+        break if lets_break end
       end
     end
 
@@ -46,9 +47,9 @@ class TwilioController < ApplicationController
             gathering_room(building, keywords)
             lets_break = true
           end
-          break if lets_break
+          break if lets_break end
         end
-        break if lets_break
+        break if lets_break end
       end
     end
 
@@ -60,9 +61,9 @@ class TwilioController < ApplicationController
             @response = "There's food in " + room.name + " in " + building.name
             lets_break = true
           end
-          break if lets_break
+          break if lets_break end
         end
-        break if lets_break
+        break if lets_break end
       end
       @response = "Sorry, nope."
     end
