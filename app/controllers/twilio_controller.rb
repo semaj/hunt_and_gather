@@ -23,49 +23,49 @@ class TwilioController < ApplicationController
     render 'process_sms.xml.erb', :content_type => 'text/xml'
   end
 
-  private
+  # private
 
-    def gathering_school(text)
-      text.keywords.top(10).each do |word|
-        School.all.each do |school|
-          down_school_name = school.name.downcase
-          if down_school_name.match(word)
-            gathering_building(school, keywords)
-            lets_break = true
-          end
-          break if lets_break end
-        end
-        break if lets_break end
-      end
-    end
+  #   def gathering_school(text)
+  #     text.keywords.top(10).each do |word|
+  #       School.all.each do |school|
+  #         down_school_name = school.name.downcase
+  #         if down_school_name.match(word)
+  #           gathering_building(school, keywords)
+  #           lets_break = true
+  #         end
+  #         break if lets_break end
+  #       end
+  #       break if lets_break end
+  #     end
+  #   end
 
-    def gathering_building(school, text)
-      text.keywords.top(10).each.do |word|
-        school.buildings.each do |building|
-          down_building_name = building.name.downcase
-          if down_building_name.match(word)
-            gathering_room(building, keywords)
-            lets_break = true
-          end
-          break if lets_break end
-        end
-        break if lets_break end
-      end
-    end
+  #   def gathering_building(school, text)
+  #     text.keywords.top(10).each.do |word|
+  #       school.buildings.each do |building|
+  #         down_building_name = building.name.downcase
+  #         if down_building_name.match(word)
+  #           gathering_room(building, keywords)
+  #           lets_break = true
+  #         end
+  #         break if lets_break end
+  #       end
+  #       break if lets_break end
+  #     end
+  #   end
 
-    def gathering_room(building, text)
-      text.keywords.top(10).each.do |word|
-        building.rooms.each do |room|
-          down_room_name = room.name.downcase
-          if down_room_name.match(word)
-            @response = "There's food in " + room.name + " in " + building.name
-            lets_break = true
-          end
-          break if lets_break end
-        end
-        break if lets_break end
-      end
-      @response = "Sorry, nope."
-    end
+  #   def gathering_room(building, text)
+  #     text.keywords.top(10).each.do |word|
+  #       building.rooms.each do |room|
+  #         down_room_name = room.name.downcase
+  #         if down_room_name.match(word)
+  #           @response = "There's food in " + room.name + " in " + building.name
+  #           lets_break = true
+  #         end
+  #         break if lets_break end
+  #       end
+  #       break if lets_break end
+  #     end
+  #     @response = "Sorry, nope."
+  #   end
 
 end

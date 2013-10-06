@@ -4,7 +4,7 @@ class Building < ActiveRecord::Base
   attr_accessible :school_id, :name, :food
 
   def has_food?
-    if self.rooms.nil?
+    if self.rooms.empty?
       return self.food
     else
       return self.rooms.any? {|r| r.has_food? }
