@@ -12,10 +12,10 @@ class TwilioController < ApplicationController
     text.keywords.top(20).each do |word|
       raw = word.text
       if hunting.any? {|s| s.eql? raw }
-        @response = gathering_school(text)
+        @response = "Hunting!"
         break
       elsif gathering.any? {|s| s.eql? raw }
-        @response = "I see you've found some food."
+        @response = gathering_school(text)
         break
       end
     end
@@ -38,6 +38,7 @@ class TwilioController < ApplicationController
       end
       break if lets_break
     end
+    @response = "No school found"
   end
 
   def gathering_building(school, text)
@@ -53,6 +54,7 @@ class TwilioController < ApplicationController
       end
       break if lets_break
     end
+    @response = "No building found"
   end
 
   def gathering_room(building, text)
@@ -68,7 +70,7 @@ class TwilioController < ApplicationController
       end
       break if lets_break
     end
-    @response = "Sorry!!!"
+    @response = "No room found"
   end
 
 end
