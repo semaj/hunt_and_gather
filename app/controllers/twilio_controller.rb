@@ -39,33 +39,33 @@ class TwilioController < ApplicationController
     end
   end
 
-  #   def gathering_building(school, text)
-  #     text.keywords.top(10).each.do |word|
-  #       school.buildings.each do |building|
-  #         down_building_name = building.name.downcase
-  #         if down_building_name.match(word)
-  #           gathering_room(building, keywords)
-  #           lets_break = true
-  #         end
-  #         break if lets_break end
-  #       end
-  #       break if lets_break end
-  #     end
-  #   end
+    def gathering_building(school, text)
+      text.keywords.top(10).each.do |word|
+        school.buildings.each do |building|
+          down_building_name = building.name.downcase
+          if down_building_name.match(word)
+            gathering_room(building, keywords)
+            lets_break = true
+          end
+          break if lets_break
+        end
+        break if lets_break
+      end
+    end
 
-  #   def gathering_room(building, text)
-  #     text.keywords.top(10).each.do |word|
-  #       building.rooms.each do |room|
-  #         down_room_name = room.name.downcase
-  #         if down_room_name.match(word)
-  #           @response = "There's food in " + room.name + " in " + building.name
-  #           lets_break = true
-  #         end
-  #         break if lets_break end
-  #       end
-  #       break if lets_break end
-  #     end
-  #     @response = "Sorry, nope."
-  #   end
+    def gathering_room(building, text)
+      text.keywords.top(10).each.do |word|
+        building.rooms.each do |room|
+          down_room_name = room.name.downcase
+          if down_room_name.match(word)
+            @response = "There's food in " + room.name + " in " + building.name
+            lets_break = true
+          end
+          break if lets_break
+        end
+        break if lets_break
+      end
+      @response = "Sorry, nope."
+    end
 
 end
