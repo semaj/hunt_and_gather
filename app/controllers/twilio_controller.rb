@@ -40,7 +40,7 @@ class TwilioController < ApplicationController
   end
 
     def gathering_building(school, text)
-      text.keywords.top(10).each.do |word|
+      text.keywords.top(10).each do |word|
         school.buildings.each do |building|
           down_building_name = building.name.downcase
           if down_building_name.match(word)
@@ -54,7 +54,7 @@ class TwilioController < ApplicationController
     end
 
     def gathering_room(building, text)
-      text.keywords.top(10).each.do |word|
+      text.keywords.top(10).each do |word|
         building.rooms.each do |room|
           down_room_name = room.name.downcase
           if down_room_name.match(word)
@@ -65,7 +65,7 @@ class TwilioController < ApplicationController
         end
         break if lets_break
       end
-      @response = "Sorry, nope."
+      @response = "Sorry!!!"
     end
 
 end
