@@ -18,7 +18,7 @@ class School < ActiveRecord::Base
         if b.has_food?
           food_string = food_string + b.name + ": "
           b.rooms.each do |r|
-            if r.has_food
+            if r.has_food?
               food_string = food_string + r.name + " - "
             end
           end
