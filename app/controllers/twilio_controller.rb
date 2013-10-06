@@ -27,11 +27,13 @@ class TwilioController < ApplicationController
   # private
 
   def gathering_school(text)
+    @response = "test"
     lets_break = false
     text.keywords.top(10).each do |word|
+      @response = @response + word.text
       School.all.each do |school|
         down_school_name = school.name.downcase
-        @response = "test"
+        @response = "test2"
         if down_school_name.match(word.text)
 
           gathering_building(school, text)
