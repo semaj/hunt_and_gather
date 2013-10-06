@@ -29,7 +29,7 @@ class TwilioController < ApplicationController
     text.keywords.top(10).each do |word|
       School.all.each do |school|
         down_school_name = school.name.downcase
-        if down_school_name.match(word)
+        if down_school_name.match(word.text)
           gathering_building(school, keywords)
           lets_break = true
         end
@@ -43,7 +43,7 @@ class TwilioController < ApplicationController
       text.keywords.top(10).each do |word|
         school.buildings.each do |building|
           down_building_name = building.name.downcase
-          if down_building_name.match(word)
+          if down_building_name.match(word.text)
             gathering_room(building, keywords)
             lets_break = true
           end
@@ -57,7 +57,7 @@ class TwilioController < ApplicationController
       text.keywords.top(10).each do |word|
         building.rooms.each do |room|
           down_room_name = room.name.downcase
-          if down_room_name.match(word)
+          if down_room_name.match(word.text)
             @response = "There's food in " + room.name + " in " + building.name
             lets_break = true
           end
