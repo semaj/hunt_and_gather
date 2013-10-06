@@ -25,7 +25,7 @@ class TwilioController < ApplicationController
   end
 
   # private
-
+  protected
   def gathering_school(text)
     @response = "test"
     lets_break = false
