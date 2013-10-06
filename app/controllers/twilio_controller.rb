@@ -67,6 +67,7 @@ class TwilioController < ApplicationController
         down_room_name = room.name.downcase
         if down_room_name.match(word.text)
           room.food = true
+          room.save
           return "You found food in " + building.name + ", " + room.name + ". Thanks!"
         end
       end
