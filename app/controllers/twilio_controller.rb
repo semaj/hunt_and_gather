@@ -44,7 +44,7 @@ class TwilioController < ApplicationController
         if down_school_name.match(word.text)
           school.food = true
           school.save
-          return "You found food at " + school.name + gathering_building(school, text)
+          return "You found food at " + school.name.to_s + gathering_building(school, text)
         end
       end
     end
