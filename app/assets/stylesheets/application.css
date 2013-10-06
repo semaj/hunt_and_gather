@@ -11,3 +11,26 @@
  *= require_self
  *= require_tree .
 */
+
+body {
+  font-family: 'Cabin';
+  color:black;
+  background-image:url("squairy_light.png");
+
+}
+
+a {
+  text-decoration:none;
+  color:blue;
+}
+
+#centered{
+  text-align:center;
+  width:300px;
+  margin-right: auto;
+  margin-left:auto;
+}
+
+#centered th {
+  text-align:center;
+}
