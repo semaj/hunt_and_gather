@@ -16,7 +16,8 @@ class TwilioController < ApplicationController
         @response = "Hunting!"
         break
       elsif gathering.any? {|s| s.eql? raw }
-        @response = @response + word.text
+        @response = gathering_school(text)
+        break
       end
     end
     @response = "I didn't quite get that." unless not @response.nil?
@@ -31,6 +32,7 @@ class TwilioController < ApplicationController
       School.all.each do |school|
         down_school_name = school.name.downcase
         if down_school_name.match(word.text)
+          @response = @response + down_school_name + " " + word.text
           gathering_building(school, text)
           lets_break = true
         end
@@ -38,7 +40,6 @@ class TwilioController < ApplicationController
       end
       break if lets_break
     end
-    @response = "No school found"
   end
 
   def gathering_building(school, text)
