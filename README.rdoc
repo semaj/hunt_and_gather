@@ -1,5 +1,6 @@
-= Hunt and Gather
+= Hunt & Gather
 
 This app uses SMS service Twilio to receive reports of free food on college campuses. Starting at Northeastern University. Students can then text to find the latest reports of food.
 
+* https://hunt-and-gather.herokuapp.com/
 * HackMIT!
