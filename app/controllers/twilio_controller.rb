@@ -17,7 +17,6 @@ class TwilioController < ApplicationController
         break
       elsif gathering.any? {|s| s.eql? raw }
         @response = @response + word.text
-        break
       end
     end
     @response = "I didn't quite get that." unless not @response.nil?
