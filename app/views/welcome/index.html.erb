@@ -9,14 +9,15 @@
     <tbody>
     <% building.rooms.each do |room| %>
       <% if room.has_food? %>
-        <tr class="positive"><td><%= room.name %></td></tr>
+        <tr class="positive"><td><i class="icon checkmark"></i><%= room.name %></td></tr>
       <% else %>
-        <tr class="negative"><td><%= room.name %></td></tr>
+        <tr class="negative"><td><i class="icon close"></i><%= room.name %></td></tr>
       <% end %>
     <% end %>
     </tbody>
   </table>
 <% end %>
+
 
 <h1 class="ui center aligned header">Want to eat free food at Northeastern?</h1>
 <h3 class="ui center aligned header">Text the number and say you're hungry at Northeastern.</h3>
