@@ -42,8 +42,10 @@ class TwilioController < ApplicationController
       School.all.each do |school|
         down_school_name = school.name.downcase
         if down_school_name.match(word.text)
-          school.food = true
-          school.save
+          if school.food == false
+            school.food = true
+            school.save
+          end
           return "You found food at " + school.name.to_s + gathering_building(school, text)
         end
       end
@@ -56,8 +58,10 @@ class TwilioController < ApplicationController
       school.buildings.each do |building|
         down_building_name = building.name.downcase
         if down_building_name.match(word.text)
-          building.food = true
-          building.save
+          if building.food == false
+            building.food = true
+            building.save
+          end
           return  ": " + building.name + gathering_room(building, text)
         end
       end
@@ -70,8 +74,10 @@ class TwilioController < ApplicationController
       building.rooms.each do |room|
         down_room_name = room.name.downcase
         if down_room_name.match(word.text)
-          room.food = true
-          room.save
+          if room.food == false
+            room.food = true
+            room.save
+          end
           return ": " + room.name + ". Thanks!"
         end
       end
