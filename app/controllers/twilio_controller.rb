@@ -42,7 +42,9 @@ class TwilioController < ApplicationController
       School.all.each do |school|
         down_school_name = school.name.downcase
         if down_school_name.match(word.text)
-          return gathering_building(school, text)
+          school.food = true
+          school.save
+          return "You found food at " + school.name + gathering_building(school, text)
         end
       end
     end
@@ -54,11 +56,12 @@ class TwilioController < ApplicationController
       school.buildings.each do |building|
         down_building_name = building.name.downcase
         if down_building_name.match(word.text)
-          return gathering_room(building, text)
+          building.food = true
+          building.save
+          return  ": " + building.name + gathering_room(building, text)
         end
       end
     end
-    return "You didn't send a valid building."
   end
 
   def gathering_room(building, text)
@@ -68,11 +71,10 @@ class TwilioController < ApplicationController
         if down_room_name.match(word.text)
           room.food = true
           room.save
-          return "You found food in " + building.name + ", " + room.name + ". Thanks!"
+          return ": " + room.name + ". Thanks!"
         end
       end
     end
-    return "You didn't send a valid room."
   end
 
 end
