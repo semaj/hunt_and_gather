@@ -9,6 +9,7 @@ class TwilioController < ApplicationController
     end
     hunting = %w(hungry hunger want where find hunting hunt)
     gathering = %w(found there there's here look gathering gather gathered)
+    @response = ""
     text.keywords.top(20).each do |word|
       raw = word.text
       if hunting.any? {|s| s.eql? raw }
