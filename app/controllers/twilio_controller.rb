@@ -13,7 +13,7 @@ class TwilioController < ApplicationController
     text.keywords.top(20).each do |word|
       raw = word.text
       if hunting.any? {|s| s.eql? raw }
-        @response = "Hunting!"
+        @response = hunting(text)
         break
       elsif gathering.any? {|s| s.eql? raw }
         @response = gathering_school(text)
@@ -25,6 +25,18 @@ class TwilioController < ApplicationController
   end
 
   private
+  def hunting(text)
+    text.keywords.top(10).each do |word|
+      School.all.each do |school|
+        down_school_name = school.name.downcase
+        if down_school_name.match(word.text)
+          return school.find_food
+        end
+      end
+    end
+    return "You didn't send a valid school."
+  end
+
   def gathering_school(text)
     text.keywords.top(10).each do |word|
       School.all.each do |school|

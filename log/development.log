@@ -124,3 +124,4 @@ Migrating to AddFoodBooleanToSchoolsBuildingsRooms (20131005233417)
   [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("buildings")[0m
   [1m[35m (0.0ms)[0m  PRAGMA index_list("rooms")
   [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schools")[0m
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
