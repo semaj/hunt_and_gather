@@ -1,7 +1,7 @@
 class TwilioController < ApplicationController
 
   def process_sms
-    bl_array = %w(university college student center library quad quadrangle institute room building hall dorm dormitory house theater arena dining the of a in)
+    bl_array = %w(university college student center library quad quadrangle institute room building hall dorm dormitory house theater arena dining the of a in food i)
     blacklist = Highscore::Blacklist.load bl_array
     text = Highscore::Content.new params[:Body].downcase
     text.configure do
@@ -34,7 +34,7 @@ class TwilioController < ApplicationController
         end
       end
     end
-    return "no school"
+    return "You didn't send a valid school."
   end
 
   def gathering_building(school, text)
@@ -46,20 +46,20 @@ class TwilioController < ApplicationController
         end
       end
     end
-    return "no building"
+    return "You didn't send a valid building."
   end
 
   def gathering_room(building, text)
-    lets_break = false
     text.keywords.top(10).each do |word|
       building.rooms.each do |room|
         down_room_name = room.name.downcase
         if down_room_name.match(word.text)
-          return "There's food in " + room.name + " in " + building.name
+          room.food = true
+          return "You found food in " + building.name + ", " + room.name + ". Thanks!"
         end
       end
     end
-    return "no room"
+    return "You didn't send a valid room."
   end
 
 end
