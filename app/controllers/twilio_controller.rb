@@ -15,7 +15,7 @@ class TwilioController < ApplicationController
         @response = "Hunting!"
         break
       elsif gathering.any? {|s| s.eql? raw }
-        @response = gathering_school(text)
+        @response = @response + word.text
         break
       end
     end
