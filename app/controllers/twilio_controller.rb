@@ -12,7 +12,7 @@ class TwilioController < ApplicationController
     text.keywords.top(20).each do |word|
       raw = word.text
       if hunting.any? {|s| s.eql? raw }
-        @response = gathering_school(text)
+        @response = "test"
         break
       elsif gathering.any? {|s| s.eql? raw }
         @response = "I see you've found some food."
