@@ -31,8 +31,9 @@ class TwilioController < ApplicationController
     text.keywords.top(10).each do |word|
       School.all.each do |school|
         down_school_name = school.name.downcase
+        @response = @response + down_school_name + " " + word.text
         if down_school_name.match(word.text)
-          @response = @response + down_school_name + " " + word.text
+
           gathering_building(school, text)
           lets_break = true
         end
