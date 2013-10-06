@@ -4,7 +4,7 @@
   <tr>
     <th>Building</th>
     <th>Name</th>
-    <th></th>
+    <th>Food?</th>
     <th></th>
     <th></th>
   </tr>
@@ -13,6 +13,7 @@
   <tr>
     <td><%= room.building_id %></td>
     <td><%= room.name %></td>
+    <td><%= room.has_food? %></td>
     <td><%= link_to 'Show', room %></td>
     <td><%= link_to 'Edit', edit_room_path(room) %></td>
     <td><%= link_to 'Destroy', room, confirm: 'Are you sure?', method: :delete %></td>
