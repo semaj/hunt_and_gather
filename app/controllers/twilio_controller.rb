@@ -25,19 +25,19 @@ class TwilioController < ApplicationController
 
   # private
 
-  #   def gathering_school(text)
-  #     text.keywords.top(10).each do |word|
-  #       School.all.each do |school|
-  #         down_school_name = school.name.downcase
-  #         if down_school_name.match(word)
-  #           gathering_building(school, keywords)
-  #           lets_break = true
-  #         end
-  #         break if lets_break end
-  #       end
-  #       break if lets_break end
-  #     end
-  #   end
+  def gathering_school(text)
+    text.keywords.top(10).each do |word|
+      School.all.each do |school|
+        down_school_name = school.name.downcase
+        if down_school_name.match(word)
+          gathering_building(school, keywords)
+          lets_break = true
+        end
+        break if lets_break
+      end
+      break if lets_break
+    end
+  end
 
   #   def gathering_building(school, text)
   #     text.keywords.top(10).each.do |word|
