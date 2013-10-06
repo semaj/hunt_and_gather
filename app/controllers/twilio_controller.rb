@@ -31,7 +31,7 @@ class TwilioController < ApplicationController
       School.all.each do |school|
         down_school_name = school.name.downcase
         if down_school_name.match(word.text)
-          gathering_building(school, keywords)
+          gathering_building(school, text)
           lets_break = true
         end
         break if lets_break
@@ -46,7 +46,7 @@ class TwilioController < ApplicationController
       school.buildings.each do |building|
         down_building_name = building.name.downcase
         if down_building_name.match(word.text)
-          gathering_room(building, keywords)
+          gathering_room(building, text)
           lets_break = true
         end
         break if lets_break
