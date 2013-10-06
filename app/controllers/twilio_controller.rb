@@ -62,6 +62,7 @@ class TwilioController < ApplicationController
         end
       end
     end
+    return ""
   end
 
   def gathering_room(building, text)
@@ -75,6 +76,7 @@ class TwilioController < ApplicationController
         end
       end
     end
+    return ""
   end
 
 end
