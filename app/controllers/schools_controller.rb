@@ -5,7 +5,7 @@ class SchoolsController < ApplicationController
     @schools = School.all
   end
 
-  # GET /schools/1
+  # #GET /schools/1
   # GET /schools/1.json
   def show
     @school = School.find(params[:id])
